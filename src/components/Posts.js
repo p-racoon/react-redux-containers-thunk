@@ -34,7 +34,13 @@ class Posts extends Component {
     //now we would not want to put it here but in the application state, using redux
     // alert("after fetching data,end of componentDidMount");
   }
-
+  componentWillReceiveProps(nextProps){
+    //when i t receives new property from states it will run 
+    if(nextProps.newPost){
+      this.props.posts.unshift(nextProps.newPost);
+      // this.props.posts= this.props.post;
+    }
+  }
   render() {
     const postItems = this.props.posts.map(
       post => <div key={post.id}>
@@ -52,12 +58,14 @@ class Posts extends Component {
 }
 Posts.propTypes = {
   fetchPosts: PropTypes.func.isRequired,
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
+  newPost: PropTypes.object
 };
 
 //mappingstate to properties
 const mapStateToProps = redux_state => ({
-  posts: redux_state.posts.items //.posts as we set it in rootReducer  and .itms as we have set it in our postReducer
+  posts: redux_state.posts.items, //.posts as we set it in rootReducer  and .itms as we have set it in our postReducer
+  newPost: redux_state.posts.item
 });
 export default connect(mapStateToProps, { fetchPosts })(Posts);
 //so  a mapperfunction, action
