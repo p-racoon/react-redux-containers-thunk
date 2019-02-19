@@ -8,6 +8,11 @@ class App extends Component {
   componentDidMount(){ 
     //componentWillMount is deprecated in  the recentRelease now we have just:- componentDidMount() & componentWillUnmount()
     //componentDidMount() method runs after the component output has been rendered to the DOM
+    //componentDidMount is the best place to fetch data, since we are requesting the data asynchronously,
+    //https://daveceddia.com/where-fetch-data-componentwillmount-vs-componentdidmount/ 
+    //hence  the component will render with empty data at least once
+    //and once the data arrives it will be rerendered
+
     
     //this will run right away when the component will mount
     //so even before anything is displayed on the page it will run
