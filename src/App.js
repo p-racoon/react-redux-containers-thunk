@@ -5,15 +5,20 @@ import Posts from './components/Posts';
 
 class App extends Component {
   //this lifecycle method will be used to fetch the Posts from the API
-  componentWillMount(){ //componentWillMount is deprecated in  the recentRelease now we have just:- componentDidMount() & componentWillUnmount()
+  componentDidMount(){ 
+    //componentWillMount is deprecated in  the recentRelease now we have just:- componentDidMount() & componentWillUnmount()
+    //componentDidMount() method runs after the component output has been rendered to the DOM
+    
     //this will run right away when the component will mount
     //so even before anything is displayed on the page it will run
     // console.log("123");
     // alert("from component will mount");
     fetch('https://jsonplaceholder.typicode.com/posts')
     .then(res=>res.json())
-    .then(data=>console.log(data))
+    .then(data=>console.log(data));
+    // .then(alert("posts Loaded"));
     //now we would not want to put it here but in the application state, using redux
+    // alert("after fetching data,end of componentDidMount");
   }
   render() {
     return (
